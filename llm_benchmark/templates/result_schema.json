@@ -1,0 +1,81 @@
+{
+  "test_info": {
+    "timestamp": "2026-05-30T00:00:00+08:00",
+    "duration_seconds": 0,
+    "test_mode": "quick|compare|tune|scan"
+  },
+  "environment": {
+    "remote_host": "192.168.66.65",
+    "remote_user": "cyril",
+    "gpu_model": "NVIDIA GeForce RTX 4090 D",
+    "gpu_vram_mb": 49140,
+    "os": "Linux",
+    "llama_version": "unknown"
+  },
+  "model": {
+    "name": "Qwen3.6-27B-Omnimerge-v4-Q6_K",
+    "path": "/path/to/model.gguf",
+    "size_mb": 22000,
+    "quantization": "Q6_K",
+    "parameters": "27B"
+  },
+  "config": {
+    "ctx_size": 32768,
+    "parallel": 2,
+    "batch_size": 2048,
+    "ubatch_size": 512,
+    "cache_type_k": "q8_0",
+    "cache_type_v": "q8_0",
+    "spec_type": "draft-mtp",
+    "spec_draft_n_max": 3,
+    "reasoning_budget": 8192
+  },
+  "results": [
+    {
+      "test_id": 1,
+      "max_tokens": 256,
+      "prompt_tokens": 15,
+      "completion_tokens": 256,
+      "total_tokens": 271,
+      "time_ms": 3700,
+      "tokens_per_sec": 69.19,
+      "success": true
+    }
+  ],
+  "summary": {
+    "total_tests": 4,
+    "successful_tests": 4,
+    "avg_tokens_per_sec": 70.0,
+    "max_tokens_per_sec": 75.0,
+    "min_tokens_per_sec": 67.0,
+    "vram_used_mb": 28000,
+    "vram_free_mb": 21000,
+    "vram_usage_percent": 57
+  },
+  "recommendations": {
+    "max_throughput": {
+      "ctx_size": 32768,
+      "parallel": 4,
+      "batch_size": 4096,
+      "spec_draft_n_max": 5,
+      "expected_tps": 76
+    },
+    "min_latency": {
+      "ctx_size": 16384,
+      "parallel": 2,
+      "batch_size": 1024,
+      "spec_draft_n_max": 3
+    },
+    "balanced": {
+      "ctx_size": 32768,
+      "parallel": 4,
+      "batch_size": 4096,
+      "spec_draft_n_max": 5
+    }
+  },
+  "notes": [
+    "spec_draft_n_max=5 给出最佳吞吐量",
+    "parallel=4 是最优并行度",
+    "batch_size=4096 性价比最高"
+  ]
+}
